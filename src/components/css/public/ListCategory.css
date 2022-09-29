@@ -1,0 +1,20 @@
+.category-container {
+    padding: var(--desk-padd);
+    margin-top: 100px;
+}
+.category-container h3 {
+    font-family: var(--cursive-font);
+    color: var(--darker-pink-color);
+    text-align: center;
+    font-size: 3rem;
+}
+.list-category {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+}
+.category-img img {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+}

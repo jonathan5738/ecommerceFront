@@ -1,0 +1,8 @@
+.list-product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 3rem;
+}
+.product-card-img img {
+    width: 100%;
+}

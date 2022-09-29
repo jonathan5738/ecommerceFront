@@ -1,0 +1,38 @@
+.coming-soon {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
+    padding: var(--desk-padd);
+    margin-top: 15rem;
+    color: #fff;
+}
+.coming-soon-box1 h2 {
+    font-size: 5rem;
+    padding: 0;
+    margin: 0;
+}
+.coming-soon-box1 span {
+    display: inline-block;
+    color: var(--darker-pink-color);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.coming-soon-box2 img {
+    width: 100%;
+    border-radius: 1.5rem;
+    height: 60rem;
+}
+.coming-soon-box1-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+}
+.coming-soon-box1-text p {
+    line-height: 1.7;
+    font-size: 1.3rem;
+}
+.coming-soon-box1-img img {
+    width: 100%;
+    border-radius: 1.5rem;
+}

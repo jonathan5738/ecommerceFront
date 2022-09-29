@@ -1,0 +1,26 @@
+.hero-section  {
+    background-image:linear-gradient(#33333393, #33333349), url('../../imgs/pexels-godisable-jacob-2703316.jpg');
+    background-size: cover;
+    height: 100vh;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+.hero-section-content {
+    position: absolute;
+    top: 24rem;
+    left: 15rem;
+}
+.marketing-sentence {
+    padding: 0;
+    margin: 0;
+    font-size: 3rem;
+    font-family: 'Bungee Shade', cursive;
+    color: #ffdeeb;
+}
+.shopping-link {
+    font-family: var(--cursive-font);
+    font-size: 2rem;
+    text-decoration: none;
+    color: #ffffff;
+}

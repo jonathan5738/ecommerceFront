@@ -1,0 +1,9 @@
+:root {
+    --desk-padd: 0 100px;
+    --desk-medium-padd: 0 80px;
+    --mobile-padd: 0 20px;
+    --font-family: 'Inter', sans-serif;
+    --cursive-font: 'Monoton', cursive;
+    --pink-color: #ffdeeb;
+    --darker-pink-color: #f8c0d6;
+}
