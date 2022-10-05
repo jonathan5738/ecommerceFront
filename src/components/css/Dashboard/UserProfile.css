@@ -3,6 +3,7 @@
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3rem;
     padding: var(--desk-padd);
+    margin-top: 10rem;
 }
 .shipping-address-card {
     border: 1px solid rgb(211, 211, 211);

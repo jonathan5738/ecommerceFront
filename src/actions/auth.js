@@ -22,7 +22,10 @@ const authSlice = createSlice({
             state.data = action.payload
             localStorage.setItem(process.env.REACT_APP_STORAGE_NAME, JSON.stringify(action.payload))
         })
-        .addCase(loginUser.rejected, (state) => {state.status = 'failed'})
+        .addCase(loginUser.rejected, (state, action) => {
+            state.status = 'failed'
+            state.error = 'username or password invalid'
+        })
         .addCase(loginUser.pending, (state) => {state.status = 'pending'})
 
         // sign user reducer functions
@@ -31,20 +34,29 @@ const authSlice = createSlice({
             state.data = action.payload
             localStorage.setItem(process.env.REACT_APP_STORAGE_NAME, JSON.stringify(action.payload))
         })
-        .addCase(signUser.rejected, (state) => {state.status = 'failed'})
-        .addCase(signUser.pending, (state) => {state.status = 'pending'})
+        .addCase(signUser.rejected, (state, action) => {
+            state.status = 'failed'
+            state.error = 'unable to sign, retry'
+        })
+        .addCase(signUser.pending, (state) => {
+            state.status = 'pending'
+        })
 
         // edit user reducer functions
         .addCase(editUser.fulfilled, (state, action) => {
             state.status = 'succeed'
             state.data = action.payload
         })
-        .addCase(editUser.rejected, (state) => {state.status = 'failed'})
+        .addCase(editUser.rejected, (state) => {
+            state.status = 'failed'
+            state.error = 'unable to edit user profile'
+        })
         .addCase(editUser.pending, (state) => {state.status = 'pending'})
     }
 })
 export const authReducer = authSlice.reducer
 export const { logoutUser } = authSlice.actions
+
 export const loginUser = createAsyncThunk('auth/loginUser',async (data) => {
     const response = await API.post('/users/login', data)
     return response.data

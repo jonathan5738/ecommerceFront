@@ -18,3 +18,10 @@
     height: 300px;
     border-radius: 10px;
 }
+
+@media (max-width: 700px){
+    .category-container {
+        padding: var(--mobile-padd);
+        /* margin-top: 100px; */
+    }
+}

@@ -19,7 +19,7 @@ function UserProfile() {
     dispatch(fetchProfile())
   }, [])
 
-  const profile = useSelector(state => state.profile)
+  const profile = useSelector(state => state.profile.data)
   
   const showEditFormHandler = () => {
       setEditUserForm(true);setShippingForm(false)

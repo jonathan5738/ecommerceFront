@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchProductPublic} from '../../actions/product'
 import { fetchSimilarProducts } from '../../actions/similarProduct'
+
 import '../css/public/ProductDetailPublic.css'
 
 function ProductDetailPublic() {
@@ -17,6 +18,7 @@ function ProductDetailPublic() {
   }, [])
 
   const product = useSelector(state => state.products.products)
+//   const currentUser = JSON.parse(localStorage.getItem(process.env.REACT_APP_STORAGE_NAME))
 
   const handleSubmit = (e) => {
      e.preventDefault()
@@ -44,6 +46,7 @@ function ProductDetailPublic() {
                      product_img: product.product_imgs[0].url}]
             } else {
                 // a new product is added to a checkout
+                // const key = jwt.sign({userId: currentUser.id, productId: product._id}, 'akdaskjdasdsa')
                 checkout[product._id] = {product_id: product._id, color, qty, size, name: product.name,
                      product_img: product.product_imgs[0].url}
             }

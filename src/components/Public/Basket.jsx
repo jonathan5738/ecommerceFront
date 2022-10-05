@@ -15,7 +15,7 @@ function Basket() {
   useEffect(() => {
      dispatch(fetchProfile())
   }, [])
-  const profile = useSelector(state => state.profile)
+  const profile = useSelector(state => state.profile.data)
   
   const removeProduct = (product_id, index=null) => {
     console.log(product_id, index)
@@ -68,7 +68,9 @@ function Basket() {
   }
 
   return (
-      <section className="checkout-container">
+      <section>
+         <h3>Checkout</h3>
+         <div className="checkout-container">
          {checkout && (
              <>
                 <div className="checkout-product-list">
@@ -82,17 +84,27 @@ function Basket() {
                                             <div className="checkout-cart-product" key={index}>
                                                 <div className="checkout-card-img">
                                                    <img src={product?.product_img} alt="" />
+                                                   <div className="checkout-qty">
+                                                      quantity: {product?.qty}
+                                                   </div>
                                                 </div>
                                                 <div className="checkout-card-text">
                                                     <h2 className='checkout-name'>{product?.name}</h2>
-                                                    <p className='checkout-colors'>colors: {product?.color}</p>
-                                                    <p className="checkout-size">size: {product?.size}</p>
-                                                    <p className='checkout-quantity'>
-                                                        quantity: {product?.qty}
-                                                        <input type="number" value={productQty} min={1} defaultValue={product?.qty}
-                                                        onChange={(e) => addQuantity(e.target.value, product?.product_id, index)}/>
-                                                    </p>
-                                                    <button onClick={() => removeProduct(product?.product_id, index)}>remove from cart</button>
+                                                    <div className='checkout-content'>
+                                                        <div>
+                                                            <p className='checkout-colors'>colors: {product?.color}</p>
+                                                            <p className="checkout-size">size: {product?.size}</p>
+                                                        </div>
+                                                        <div>
+                                                            <p className='checkout-quantity'>
+                                                            <input type="number" value={productQty} min={1} defaultValue={product?.qty}
+                                                            onChange={(e) => addQuantity(e.target.value, product?.product_id, index)}/>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <button onClick={() => removeProduct(product?.product_id, index)}
+                                                     className='remove-product-button'
+                                                    >remove from cart</button>
                                                 </div>
                                             </div>
                                         )
@@ -102,17 +114,28 @@ function Basket() {
                                  <div className='checkout-cart-product' key={checkout[key].size}>
                                     <div className="checkout-card-img">
                                         <img src={checkout[key].product_img} alt="" />
+                                        <div className="checkout-qty">
+                                           {checkout[key].qty}
+                                        </div>
                                     </div>
                                     <div className="checkout-card-text">
                                             <h2 className='checkout-name'>{checkout[key].name}</h2>
-                                            <p className='checkout-colors'>colors: {checkout[key].color}</p>
-                                            <p className="checkout-size">size: {checkout[key].size}</p>
-                                            <p className='checkout-quantity'>
-                                                quantity: {checkout[key].qty}
-                                                <input type="number" value={productQty} min={1} defaultValue={checkout[key].qty}
-                                                onChange={(e) => addQuantity(e.target.value, checkout[key].product_id)}/>
-                                            </p>
-                                            <button onClick={() => removeProduct(checkout[key].product_id)}>remove from cart</button>
+                                            <div className="checkout-content">
+                                                <div>
+                                                    <p className='checkout-colors'>colors: {checkout[key].color}</p>
+                                                    <p className="checkout-size">size: {checkout[key].size}</p>
+                                                </div>
+                                                <div>
+                                                    <p className='checkout-quantity'>
+                                                    <input type="number" value={productQty} min={1} defaultValue={checkout[key].qty}
+                                                    onChange={(e) => addQuantity(e.target.value, checkout[key].product_id)}/>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            
+                                            <button onClick={() => removeProduct(checkout[key].product_id)}
+                                              className='remove-product-button'
+                                            >remove from cart</button>
                                     </div>
                                  </div>
                               )}
@@ -120,24 +143,31 @@ function Basket() {
                         )
                     })}
                 </div>
-                {Object.keys(profile).includes('shippingAddresses') && (
-                    <div>
-                        <h3>Shipping information</h3>
-                        {profile?.shippingAddresses?.filter(shipping => shipping.selectedAddress === true)?.map(shipping => {
-                            return (
-                                <div className="shipping-card" key={shipping._id}>
-                                    <p>Street: {shipping.street}</p>
-                                    <p>city: {shipping.city}</p>
-                                    <p>district: {shipping.district}</p>
-                                    <p>country: {shipping.country}</p>
-                                </div>
-                            )
-                        })}
-                        <button onClick={confirmOrder}>Confirm order</button>
-                    </div>
-                )}
+                <div className='shipping-container'>
+                    {Object.keys(profile).includes('shippingAddresses')? (
+                        <div>
+                            <h3>Shipping information</h3>
+                            {profile?.shippingAddresses?.filter(shipping => shipping.selectedAddress === true)?.map(shipping => {
+                                return (
+                                    <div className="shipping-card" key={shipping._id}>
+                                        <p>Street: {shipping.street}</p>
+                                        <p>city: {shipping.city}</p>
+                                        <p>district: {shipping.district}</p>
+                                        <p>country: {shipping.country}</p>
+                                    </div>
+                                )
+                            })}
+                            <button onClick={confirmOrder} className="confirm-button">Confirm order</button>
+                        </div>
+                    ): (
+                        <div>
+                            <a href="/accounts/profile">add a shipping address</a>
+                        </div>
+                    )}
+                </div>
              </>
          )}
+         </div>
          {!checkout && (
              <>
                 <div className="checkout-container">

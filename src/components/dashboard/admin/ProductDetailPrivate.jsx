@@ -23,7 +23,7 @@ function ProductDetailPrivate() {
 
 
   const dispatch = useDispatch()
-  const product = useSelector(state => state.products)
+  const product = useSelector(state => state.products.products)
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -62,6 +62,20 @@ function ProductDetailPrivate() {
   const handleImageUpload = (e) => {
       setProductImgs(e.target.files[0])
   }
+
+  const validate = data => {
+    const errors = {}
+    if(!data.name) errors.name = 'name required'
+    if(!data.description) errors.description = 'description required'
+    if(!data.qty) errors.qty = 'quantity required'
+    if(parseInt(data.qty) < 0) errors.qty = 'quantity must be greater than 0'
+    if(!data.qty_size)  errors.qty_size = 'qty_size required'
+    if(!data.price) errors.price = 'price required'
+    if(parseFloat(data.price) < 0) errors.price = 'price must be greater than 0.00'
+    if(!data.colors) errors.colors = 'colors required'
+    if(!data.tags) errors.tags = 'tags required'
+    return errors
+ }
   
   return (
     <div>
@@ -71,60 +85,63 @@ function ProductDetailPrivate() {
                     <div className="product-card-img">
                         <img src={product?.product_imgs[0]?.url} alt="" /> 
                     </div>
-                    <div className="product-card-content">
+                    <div className="product-card-content product-edit-padding">
                         <h4>{product.name}</h4>
                         <p>{product?.description}</p>
                         <p>${product?.price}</p>
                         <div className="product-card-link">
-                            <button onClick={editSetFields}>edit product</button>
-                            <button onClick={(e) => setDeleteModal(prev => !prev)}>delete product</button>
+                            <button className='edit-button' onClick={editSetFields}>edit product</button>
+                            <button className='delete-button' onClick={(e) => setDeleteModal(prev => !prev)}>delete product</button>
                         </div>
                     </div>
               </div>
             )}
 
             {showEditForm && (
-                <div className="edit-form">
-                    <form onSubmit={handleSubmit}>
-                    <div>
-                        <input type="text" value={name} onChange={e => setName(e.target.value)}
-                        placeholder="name" aria-label='name'
-                        />
-                    </div>
-                    <div>
-                        <input type="text" value={colors} onChange={e => setColors(e.target.value)}
-                        placeholder="colors" aria-label='colors'
-                        />
-                        <input type="text" value={tags} onChange={e => setTags(e.target.value)}
-                        placeholder="tags" aria-label='tags'
-                        />
-                    </div>
+                <div className="form-section-product-manage">
+                    <h3>Edit product*</h3>
+                    <div className="">
+                    <form className='form' onSubmit={handleSubmit}>
+                            <div>
+                                <input type="text" value={name} onChange={e => setName(e.target.value)}
+                                placeholder="name" aria-label='name'
+                                />
+                            </div>
+                            <div className='multiple-field'>
+                                <input type="text" value={colors} onChange={e => setColors(e.target.value)}
+                                placeholder="colors" aria-label='colors'
+                                />
+                                <input type="text" value={tags} onChange={e => setTags(e.target.value)}
+                                placeholder="tags" aria-label='tags'
+                                />
+                            </div>
 
-                    <div>
-                        <textarea value={description} cols="30" rows="6" 
-                        onChange={e => setDescription(e.target.value)} placeholder="description"
-                        aria-label='description'
-                        ></textarea>
-                    </div>
+                            <div>
+                                <textarea value={description} cols="30" rows="6" 
+                                onChange={e => setDescription(e.target.value)} placeholder="description"
+                                aria-label='description'
+                                ></textarea>
+                            </div>
 
-                    <div>
-                        <input type="file" onChange={handleImageUpload}/>
-                    </div>
+                            <div>
+                                <input type="file" onChange={handleImageUpload}/>
+                            </div>
 
-                    <div>
-                        <input type="text" value={qty} onChange={e => setQty(e.target.value)} 
-                        placeholder="quantity" aria-label='quantity'
-                        />
-                        <input type="text" value={price} onChange={e => setPrice(e.target.value)} 
-                            placeholder="price" aria-label='price'
-                        />
-                    </div>
-                
-                    <div>
-                        <textarea value={qty_size} onChange={e => setQtySize(e.target.value)} cols="30" rows="5"></textarea>
-                    </div>
-                    <button>edit product</button>
+                            <div className='multiple-field'>
+                                <input type="text" value={qty} onChange={e => setQty(e.target.value)} 
+                                placeholder="quantity" aria-label='quantity'
+                                />
+                                <input type="text" value={price} onChange={e => setPrice(e.target.value)} 
+                                    placeholder="price" aria-label='price'
+                                />
+                            </div>
+                        
+                            <div>
+                                <textarea value={qty_size} onChange={e => setQtySize(e.target.value)} cols="30" rows="5"></textarea>
+                            </div>
+                            <button>edit product</button>
                     </form>
+                   </div>
                 </div>
             )}
         </div>

@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns:1fr 4fr;
     margin-top: 10rem;
+    position: relative;
 }
 .filter-list-containter {
     background-color: #1d1d1d;
@@ -11,7 +12,6 @@
     /* height: 100vh; */
 }
 .product-card-container {
-    padding: 0 2rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -26,6 +26,7 @@
     .product-list-container {
         grid-template-columns:1fr;
     }
+    
     .filter-list-containter {
         display: none;
     }

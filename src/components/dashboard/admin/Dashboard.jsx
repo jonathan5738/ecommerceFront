@@ -6,7 +6,7 @@ import '../../css/Dashboard/Dashboard.css'
 function Dashboard() {
   const dispatch = useDispatch()
   const store = useSelector(state => state.store) 
-  const categories = useSelector(state => state.categories)
+  const categories = useSelector(state => state.categories.categories)
   useEffect(() => {
     dispatch(fetchStore())
     dispatch(fetchCategories())

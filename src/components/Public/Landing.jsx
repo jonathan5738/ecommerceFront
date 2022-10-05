@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import HeroSection from './HeroSection'
 import ListCategory from './ListCategory'
 import Section3 from './Section3'
+import Bannier from './Bannier'
 function Landing() {
   const currentUser = JSON.parse(localStorage.getItem(process.env.REACT_APP_STORAGE_NAME))
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ function Landing() {
         <HeroSection/>
         <ListCategory categories={categories}/>
         <Section3/>
+        <Bannier/>
      </>
   )
 }

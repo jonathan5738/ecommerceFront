@@ -1,0 +1,26 @@
+.bannier {
+    background-image:linear-gradient(#33333352, #33333327) ,url('https://images.pexels.com/photos/13386712/pexels-photo-13386712.jpeg?auto=compress');
+    background-position: center center;
+    background-size: cover;
+    height: 90vh;
+    margin: 0 20px;
+    border-radius: 10px;
+    margin-top: 10rem;
+}
+.banner-content {
+    width: 50%;
+    line-height: 1.6;
+    font-size: 3rem;
+    color: #f1f1f1;
+    padding-left: 10rem;
+    padding-top: 2rem;
+}
+@media (max-width: 710px){
+    .bannier {
+        height: 34vh;
+    }
+    .banner-content {
+        font-size: 1.2rem;
+        padding-left: 2rem;
+    }
+}

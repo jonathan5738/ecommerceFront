@@ -40,7 +40,7 @@ function Navbar() {
              <ul className='menu'>
                  <FiMenu size={20} color={'#fff'} className='menu-icon2' onClick={() => setShowMenu(true)}/>
                  <li>
-                    <a href="#" className='menu-item'>products</a>
+                    <a href="/products/hats/all" className='menu-item'>products</a>
                 </li>
                  <li><a href="#" className='menu-item'>our story</a></li>
                  <li><a href="#" className='menu-item'>contact us</a></li>
@@ -51,11 +51,11 @@ function Navbar() {
                      <input type="text" className="product-search" placeholder='search...'/>
                 </form>
                 {/* <FiMenu size={20} color={'#fff'} className='menu-icon'/> */}
-                <FiShoppingCart size={20} color={'#fff'} className='shopping-cart'/>
+                <Link to="/cart"><FiShoppingCart size={20} color={'#fff'} className='shopping-cart'/></Link>
                 <div className="authentication-links">
                     {currentUser && (<Link to="#" onClick={() => dispatch(logoutUser())}>logout</Link>)}
                     {!currentUser && (
-                      <Link to="/accounts/login">login</Link>
+                      <Link to="/accounts/login" className='desk-login'>login</Link>
                     )}
                 </div>
              </div>
@@ -73,13 +73,14 @@ function Navbar() {
                 <input type="text" className="menu-content-product-search" placeholder='search...'/>
             </form>
             <ul className='menu-mobile'>
-                 <FiMenu size={20} color={'#fff'} className='menu-icon2' onClick={() => setShowMenu(true)}/>
                  <li><span>products</span><a href="#" className='menu-item-mobile'> <FiChevronRight/></a></li>
                  <li><span>our story</span><a href="#" className='menu-item-mobile'> <FiChevronRight/></a></li>
                  <li><span>contact us</span><a href="#" className='menu-item-mobile'> <FiChevronRight/></a></li>
              </ul>
              <FiX className='close-menu' size={27} color={"#6e6e6e"} onClick={() => setShowMenu(prev => !prev)}/>
-             <Link className='mobile-login' onClick={() => setShowMenu(prev => !prev)} to="/accounts/login">login</Link>
+             {!currentUser && (
+                <Link className='mobile-login' onClick={() => setShowMenu(prev => !prev)} to="/accounts/login">login</Link>
+             )}
         </motion.div>
      </motion.section>
      </div>

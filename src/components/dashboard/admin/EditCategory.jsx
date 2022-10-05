@@ -12,19 +12,27 @@ function EditCategory() {
   const [showModal, setShowModal] = useState(false)
   const [name, setName] = useState('')
   const [categoryImage, setCategoryImage] = useState(undefined)
+  const [formErrors, setFormErrors] = useState({})
+  const [isSubmit, setIsSubmit] = useState(false)
+
   const navigate = useNavigate()
-  const category = useSelector(state => state.categories)
+  const category = useSelector(state => state.categories.categories)
 
   useEffect(() => {
     dispatch(categoryDetail(category_id))
-  }, [])
+    if(Object.keys(formErrors).length === 0 && isSubmit){
+        const data = new FormData()
+        data.append('ct_image', categoryImage); data.append('name', name)
+        data.append('category_id', category._id)
+        dispatch(editCategory(data))
+        navigate(`/dashboard/${category_id}/edit`, {replace: true})
+    }
+  }, [formErrors])
+
   const handleSubmit = e => {
      e.preventDefault()
-     const data = new FormData()
-     data.append('ct_image', categoryImage); data.append('name', name)
-     data.append('category_id', category._id)
-     dispatch(editCategory(data))
-     navigate(`/dashboard/${category_id}/edit`, {replace: true})
+     setFormErrors(validate({categoryName: name, categoryImage}))
+     setIsSubmit(true)
   }
 
   const handleCategoryDeletion = () => {
@@ -40,6 +48,12 @@ function EditCategory() {
      setShowEditForm(prev => !prev)
      setName(category.name)
   }
+  const validate = data => {
+    const errors = {} 
+    if(!data.categoryName) errors.category_name = 'category name required'
+    if(!data.categoryImage) errors.category_image = 'category image required'
+    return errors
+ }
   return (
     <div className='edit-category-container'>
         <div className="category-card">
@@ -50,20 +64,25 @@ function EditCategory() {
                    </div>
                   <div className="category-text">
                         <h4>{category.name}</h4>
-                        <button onClick={resetField}>edit product</button>
-                        <button onClick={() => setShowModal(prev => !prev)}>delete product</button>
+                        <div className="category-text-button">
+                          <button onClick={resetField}>edit category</button>
+                          <button onClick={() => setShowModal(prev => !prev)}>delete category</button>
+                        </div>
                     </div>
                 </>
             )}
         </div>
-        <div className="category-form">
+        <div className='category-form-container'>
             {showEditForm && (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="form">
+                  <h3>Edit category</h3>
                     <div className="">
                         <input type="text" value={name} onChange={e => setName(e.target.value)}/>
+                        <span className="form-error">{formErrors.category_name}</span>
                     </div>
                     <div className="">
                     <input type="file" onChange={handleImageUpload}/>
+                    <span className="form-error">{formErrors.category_image}</span>
                     </div>
                     <button>edit category</button>
                </form>

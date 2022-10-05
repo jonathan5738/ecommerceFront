@@ -89,8 +89,9 @@ const productSlice = createSlice({
 })
 
 export const productReducer = productSlice.reducer
-export const fetchProducts = createAsyncThunk('products/fetchAll', async (category_name) => {
-    const response = await API.get(`/products/${category_name}/all`)
+export const fetchProducts = createAsyncThunk('products/fetchAll', async (data) => {
+    const {size, price} = data
+    const response = await API.post(`/products/${data.category_name}/all`, {size, price})
     return response.data
 })
 

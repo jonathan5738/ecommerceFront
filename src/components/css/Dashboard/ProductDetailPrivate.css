@@ -1,0 +1,47 @@
+.product-card-link {
+    display: flex;
+    gap: 1.4rem;
+}
+.form-section-product-manage {
+    width: 100%;
+}
+.form-section-product-manage h3 {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+}
+.product-edit-padding {
+    padding: 2rem;
+    font-size: 1.3rem;
+}
+.product-edit-padding p {
+    line-height: 1.8;
+}
+.edit-button:hover, .delete-button:hover {
+    cursor: pointer;
+}
+.edit-button {
+    display: inline-block;
+    padding: 1em 2em;
+    margin-top: 2rem;
+    font-family: var(--font-family);
+    background-color: #000;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+}
+.delete-button {
+    display: inline-block;
+    padding: 1em 2em;
+    margin-top: 2rem;
+    font-family: var(--font-family);
+    background-color: red;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+}
+
+@media (max-width: 700px){
+    .product-detail-container{
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,19 +1,29 @@
 .checkout-container {
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 40% 60%;
+    margin-top: 10rem;
+    column-gap: 2rem;
 }
 .checkout-cart-product:nth-child(even){
     margin: 2rem 0;
 }
+.checkout-product-list {
+    background-color:#181818;
+    border-radius: 10px;
+}
 .checkout-cart-product {
     display: flex;
+    padding: 2rem;
+    color: #fff;
 }
 .checkout-card-img {
-    width: 14%;
+    width: 24%;
+    position: relative;
 }
 .checkout-card-img img {
     width: 100%;
     height: 100%;
+    border-radius: 4px;
 }
 .checkout-container {
     padding: var(--desk-padd);
@@ -24,4 +34,94 @@
 .checkout-card-text p {
     padding: 0;
     margin: 0;
+}
+.shipping-container {
+    background-color:#181818;
+    padding: 2rem;
+    border-radius: 10px;
+    color: #fff;
+}
+.shipping-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.shipping-card p {
+    margin: 0;
+    padding: 1em 0;
+    background-color: rgb(17, 17, 17);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 1.3rem;
+    text-align: center;
+}
+.confirm-button {
+    display: inline-block;
+    width: 100%;
+    padding: 1em 0;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: var(--font-family);
+}
+.confirm-button:hover, .remove-product-button:hover {
+    cursor: pointer;
+}
+
+.checkout-qty {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background-color: red;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -.6rem;
+    left: -.5rem;
+}
+.remove-product-button {
+    display: inline-block;
+    padding: .4em;
+    color: #fff;
+    background-color: #000;
+    font-family: var(--font-family);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-weight: 500;
+}
+.checkout-content {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+.checkout-quantity input {
+    display: inline;
+    width: 3rem;
+    background-color: rgb(17, 17, 17);
+    border: 1px solid transparent;
+    color: #fff;
+    font-weight: bold;
+    font-family: var(--font-family);
+}
+
+@media (max-width: 954px){
+    .checkout-container {
+        padding: var(--mobile-padd);
+        margin-top: 14rem;
+    }
+}
+@media(max-width: 790px){
+    .checkout-container {
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+    }
+    .checkout-card-img {
+        width: 40%;
+        position: relative;
+    }
 }
