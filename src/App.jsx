@@ -32,6 +32,7 @@ import Success from './components/paymentPages/Success'
 import Cancel from './components/paymentPages/Cancel'
 
 function App() {
+  console.log(process.env.REACT_APP_BACKEND_URL)
   return (
      <BrowserRouter>
         <Navbar/>
