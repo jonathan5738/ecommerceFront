@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
-import SearchInput from './SearchInput'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logoutUser } from '../../actions/auth'
 import { FiMenu, FiShoppingCart, FiX, FiChevronRight } from 'react-icons/fi'
@@ -18,20 +17,8 @@ function Navbar() {
  if (localStorage.getItem('profile')){
     currentUser = JSON.parse(localStorage.getItem('profile'))
  }
- const navigate = useNavigate()
  const containerDiv = useRef()
-//  containerDiv.current.class
- const handleShowProfile = () => {
-    if(currentUser && Object.keys(currentUser).includes('username')){
-        navigate('/accounts/profile', {replace: true})
-    } else {
-        navigate('/accounts/login', {replace: true})
-    }
- }
-//  const handleLogout = () => {
-//     dispatch(logoutUser())
-//     navigate('/', {replace: true})
-//  }
+
 
   return (
      <div>
@@ -42,8 +29,8 @@ function Navbar() {
                  <li>
                     <a href="/products/hats/all" className='menu-item'>products</a>
                 </li>
-                 <li><a href="#" className='menu-item'>our story</a></li>
-                 <li><a href="#" className='menu-item'>contact us</a></li>
+                 <li><Link to="#" className='menu-item'>our story</Link></li>
+                 <li><Link to="#" className='menu-item'>contact us</Link></li>
              </ul>
              <a href="/" className='main-logo'>Vestimentas</a>
              <div className='menu-section2'>
@@ -73,9 +60,9 @@ function Navbar() {
                 <input type="text" className="menu-content-product-search" placeholder='search...'/>
             </form>
             <ul className='menu-mobile'>
-                 <li><span>products</span><a href="#" className='menu-item-mobile'> <FiChevronRight/></a></li>
-                 <li><span>our story</span><a href="#" className='menu-item-mobile'> <FiChevronRight/></a></li>
-                 <li><span>contact us</span><a href="#" className='menu-item-mobile'> <FiChevronRight/></a></li>
+                 <li><span>products</span><Link to="#" className='menu-item-mobile'> <FiChevronRight/></Link></li>
+                 <li><span>our story</span><Link to="#" className='menu-item-mobile'> <FiChevronRight/></Link></li>
+                 <li><span>contact us</span><Link to="#" className='menu-item-mobile'> <FiChevronRight/></Link></li>
              </ul>
              <FiX className='close-menu' size={27} color={"#6e6e6e"} onClick={() => setShowMenu(prev => !prev)}/>
              {!currentUser && (
