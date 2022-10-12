@@ -237,14 +237,14 @@ button:hover {
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 .form input {
     width: 100%;
     background-color: #272727;
     color: #fff;
     border: 1px solid transparent;
-    padding: .8em 0;
+    padding: 1.5em 0;
     padding-left: 1rem;
     font-family: var(--font-family);
     border-radius: 4px;

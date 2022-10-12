@@ -12,7 +12,7 @@ function AddCategory() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const store = useSelector(state => state.store)
+  const store = useSelector(state => state.store.data)
 
   useEffect(() => {
     dispatch(fetchStore())
