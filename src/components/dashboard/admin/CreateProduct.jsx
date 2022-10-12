@@ -19,7 +19,8 @@ function CreateProduct() {
   let [tags, setTags] = useState('')
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
-
+  const store = useSelector(state => state.store.data) 
+  
   useEffect(() => {
     dispatch(fetchStore())
     if(Object.keys(formErrors).length === 0 && isSubmit){
@@ -34,7 +35,6 @@ function CreateProduct() {
     }
   },[formErrors])
 
-  const store = useSelector(state => state.store)
   const handleSubmit = (e) => {
      e.preventDefault()
      setFormErrors(validate({name, description, qty, qty_size, product_imgs, price, colors, tags}))

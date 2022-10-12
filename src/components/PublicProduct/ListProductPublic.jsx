@@ -32,8 +32,8 @@ function ListProductPublic() {
   }, [])
 
   const variants = {
-   hidden: {opacity: 0},
-   visible: {opacity: 1}
+   hidden: {opacity: 0, x: '-200%'},
+   visible: {opacity: 1, x: 0}
   }
 
   const handleSubmit = e => {
@@ -94,7 +94,7 @@ function ListProductPublic() {
        <div className="product-section">
           <div className='product-section-text'>
              <h3>{category_name} collection</h3>
-             <button className='filter-button' onClick={() => setShowFilter(prev => !prev)}>filter<FiFilter/></button>
+             {/* <button className='filter-button' onClick={() => setShowFilter(prev => !prev)}>filter<FiFilter/></button> */}
           </div>
           <div className="product-card-container">
                {products.length > 0 && (
@@ -123,12 +123,12 @@ function ListProductPublic() {
                )}
           </div>
        </div>
-       <div className="mobile-filter-container">
-       <motion.div className="mobile-filter" 
+       <motion.div className="mobile-filter-container"
           variants={variants}
           initial='hidden'
           animate={showFilter ? 'visible': ''}
        >
+       <motion.div className="mobile-filter">
            <FilterForm 
                sizeL={sizeL}
                sizeM={sizeM}
@@ -147,7 +147,7 @@ function ListProductPublic() {
                resetUrl={resetUrl}
             />
        </motion.div>
-       </div>
+       </motion.div>
     </section>
   )
 }
