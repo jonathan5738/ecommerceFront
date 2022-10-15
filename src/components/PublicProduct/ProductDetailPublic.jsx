@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchProductPublic} from '../../actions/product'
-import { fetchSimilarProducts } from '../../actions/similarProduct'
 
 import '../css/public/ProductDetailPublic.css'
 
